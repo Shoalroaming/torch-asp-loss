@@ -31,7 +31,7 @@ def visualize(pred_phase, target_intensity, output_intensity, losses):
     axes[0, 1].imshow(output_np, cmap='gray', vmin=0, vmax=vmax)
     axes[0, 1].set_title('输出灰度图')
 
-    im1 = axes[1, 0].imshow(phase_np, cmap='twilight')
+    im1 = axes[1, 0].imshow(phase_np, cmap='jet')
     axes[1, 0].set_title('模拟相位图')
     divider1 = make_axes_locatable(axes[1, 0])
     cax1 = divider1.append_axes("right", size="5%", pad=0.1)
@@ -86,4 +86,5 @@ def main():
     print(f"最终损失: {losses[-1]:.4e}")
 
 if __name__ == '__main__':
+
     main()
