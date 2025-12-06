@@ -16,7 +16,6 @@ class angular_spectrum_loss(nn.Module):
         pixel_size_m: float = 8e-6,
         pad_factor: float = 1.5,
         loss_type: str = 'mse',
-        eps: float = 1e-8
     ):
         super().__init__()
         self.N = image_size
@@ -24,7 +23,6 @@ class angular_spectrum_loss(nn.Module):
         self.wavelength_m = wavelength_m
         self.pixel_size_m = pixel_size_m
         self.loss_type = loss_type
-        self.eps = eps
         self.k = 2 * torch.pi / self.wavelength_m
 
         pad_pixels = int(self.N * (pad_factor - 1) / 2)
@@ -102,4 +100,5 @@ class angular_spectrum_loss(nn.Module):
         elif self.loss_type == 'rmse':
             return torch.sqrt(F.mse_loss(output_intensity, target_intensity))
         else:
+
             raise ValueError(f"不支持损失类型: {self.loss_type}，请选择 'mse', 'mae' 或 'rmse'")
